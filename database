@@ -1,0 +1,407 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Feb 12, 2021 at 10:28 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.2
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `multivendor`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `admin_id` int(3) NOT NULL,
+  `admin_name` varchar(50) NOT NULL,
+  `admin_email` varchar(50) NOT NULL,
+  `admin_password` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_email`, `admin_password`) VALUES
+(1, 'israa', 'admin@yahoo.com', '111');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category`
+--
+
+CREATE TABLE `category` (
+  `cat_id` int(3) NOT NULL,
+  `cat_name` varchar(50) NOT NULL,
+  `cat_img` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`cat_id`, `cat_name`, `cat_img`) VALUES
+(1, 'Women Clothes', 'slide-01.jpg'),
+(3, 'Men Clothes', 'slide-02.jpg'),
+(4, 'Books', 'book.jpg'),
+(5, 'Electronics', 'Huawei-2-in-1.jpg'),
+(6, 'School Supplies ', 'school-times-3599179_960_720.jpg'),
+(7, 'Home and Garden', 'unnamed.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact`
+--
+
+CREATE TABLE `contact` (
+  `contact_id` int(3) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `contact_text` text NOT NULL,
+  `contact_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `contact`
+--
+
+INSERT INTO `contact` (`contact_id`, `name`, `email`, `contact_text`, `contact_date`) VALUES
+(1, 'Israa Elaiwa', 'esraamhmd@hotmail.com', 'I love that I can interact directedly with the vendor.', '2021-02-04'),
+(2, 'Ali mohammad', 'a@yahoo.com', 'Great Experience, high quality products , Thank you!', '2021-02-04'),
+(3, 'Rayhanna', 'raya@yahoo.com', 'How often do you have sales?', '2021-02-05'),
+(4, 'Sameer ahmad', 'sameer@gmail.com', 'I like this store.', '2021-02-12');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer`
+--
+
+CREATE TABLE `customer` (
+  `cust_id` int(3) NOT NULL,
+  `cust_name` varchar(50) NOT NULL,
+  `cust_email` varchar(50) NOT NULL,
+  `cust_password` varchar(50) NOT NULL,
+  `cust_img` varchar(50) NOT NULL,
+  `cust_num` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`cust_id`, `cust_name`, `cust_email`, `cust_password`, `cust_img`, `cust_num`) VALUES
+(1, 'Israa', 'i@gmail.com', 'd41d8cd98f00b204e9800998ecf8427e', '6.jpg', 0),
+(2, 'sora', 'i@yahoo.com', 'd41d8cd98f00b204e9800998ecf8427e', 'banner-01.jpg', 7899666),
+(3, 'Sami Ahmad', 's@gmail.com', '698d51a19d8a121ce581499d7b701668', '1-old.jpg', 7899666),
+(6, 'Noor', 'n@yahoo.com', '698d51a19d8a121ce581499d7b701668', '4.jpg', 783542527),
+(7, 'Ali ', 'a@yahoo.com', '698d51a19d8a121ce581499d7b701668', '5.jpg', 789999111);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `order_id` int(3) NOT NULL,
+  `order_date` date NOT NULL,
+  `cust_id` int(3) NOT NULL,
+  `grandTotal` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `order_date`, `cust_id`, `grandTotal`) VALUES
+(151, '2021-02-12', 3, 50),
+(152, '2021-02-12', 3, 725),
+(153, '2021-02-12', 6, 360),
+(154, '2021-02-12', 2, 110),
+(155, '2021-02-12', 2, 80),
+(156, '2021-02-12', 7, 570),
+(157, '2021-02-12', 6, 17),
+(159, '2021-02-12', 3, 40),
+(168, '2021-02-12', 3, 2030),
+(173, '2021-02-12', 7, 400);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_detail`
+--
+
+CREATE TABLE `order_detail` (
+  `order_detail_id` int(3) NOT NULL,
+  `order_id` int(3) NOT NULL,
+  `v_id` int(3) NOT NULL,
+  `pro_id` int(3) NOT NULL,
+  `pro_quantity` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `order_detail`
+--
+
+INSERT INTO `order_detail` (`order_detail_id`, `order_id`, `v_id`, `pro_id`, `pro_quantity`) VALUES
+(428, 151, 14, 25, 3),
+(429, 151, 3, 2, 1),
+(430, 152, 10, 33, 2),
+(431, 152, 3, 36, 1),
+(432, 152, 10, 32, 2),
+(433, 153, 10, 33, 1),
+(434, 153, 10, 32, 1),
+(435, 154, 12, 22, 2),
+(436, 154, 2, 7, 1),
+(437, 155, 12, 22, 2),
+(438, 155, 2, 7, 1),
+(439, 156, 14, 46, 1),
+(440, 156, 14, 43, 1),
+(441, 156, 11, 27, 1),
+(442, 156, 2, 16, 1),
+(443, 156, 11, 28, 1),
+(444, 157, 3, 37, 2),
+(445, 157, 3, 20, 1),
+(447, 159, 11, 28, 2),
+(462, 168, 3, 39, 1),
+(463, 168, 14, 44, 2),
+(472, 173, 2, 9, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product`
+--
+
+CREATE TABLE `product` (
+  `pro_id` int(3) NOT NULL,
+  `pro_name` varchar(50) NOT NULL,
+  `pro_desc` text NOT NULL,
+  `pro_img` varchar(50) NOT NULL,
+  `pro_price` int(3) NOT NULL,
+  `v_id` int(3) NOT NULL,
+  `cat_id` int(3) NOT NULL,
+  `pro_contact` varchar(50) NOT NULL,
+  `pro_status` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product`
+--
+
+INSERT INTO `product` (`pro_id`, `pro_name`, `pro_desc`, `pro_img`, `pro_price`, `v_id`, `cat_id`, `pro_contact`, `pro_status`) VALUES
+(1, 'Sport Jacket', 'Sport Jacket, very comfortable, suitable for running', '937e2222-b34c-486d-818b-1c70097528b2.jpg', 27, 2, 3, 'Amman ', 'active'),
+(2, 'Watch', 'An elegant, practical watch suitable for women', 'product-15.jpg', 20, 3, 1, 'Amman ', 'active'),
+(7, 'Jacket', ' A fancy jacket for women, very worm and comfortable', 'product-04.jpg', 20, 2, 1, 'Amman/Tabarbour', 'active'),
+(8, 'Jeans', 'Stylish Jeans with a good price', '7215408427_2_1_1.webp', 15, 2, 3, 'Egypt', 'active'),
+(9, 'Harry Potter Series of Books', 'The full collection of the famous book harry potter, 7 Books, great shape, first edition ', '9780545162074_p0_v2_s1200x630.jpg', 200, 2, 4, 'Amman/Tabarbour', 'active'),
+(16, 'To Kill A Mockingbird Book', 'First edition of To Kill A Mockingbird Book ', 'book-cover-To-Kill-a-Mockingbird-many-1961.jpg', 150, 2, 4, 'Jordan/ Irbid', 'active'),
+(17, 'School bag', 'Back To school bag, suitable for teenagers', 'banner-06.jpg', 10, 2, 6, 'Syria', 'active'),
+(18, 'Dress', 'A beautiful Dress with a great price ', 'ee.jpg', 32, 2, 1, 'Egypt', 'active'),
+(20, 'School Supplies ', 'Collection of school needs, including scissors, glue, notebooks.', '81Ds85xuEfL._AC_SY355_.jpg', 5, 3, 6, 'Amman/Tabarbour', 'active'),
+(21, 'Jeans Jacket', 'Women Jeans Jacket That can be worn in autumn or summer ', 'gallery-02.jpg', 20, 12, 1, 'Amman', 'active'),
+(22, 'Pants', 'Women pink pants that goes with any blouse, can be formal or informal', 'product-02.jpg', 30, 12, 1, 'Amman', 'active'),
+(23, 'Watch', 'women watch that matches many outfits', 'banner-07.jpg', 22, 12, 1, 'Egypt', 'active'),
+(24, 'suit', 'A suit for men that is business casual and appropriate for work', 'blog-02.jpg', 55, 14, 3, 'Jordan/ Zarqa', 'active'),
+(25, 'The hobbit book', 'A book by J.R.R Tolkien that describes a made up place and includes a story about rings ', 'jhjka.jpg', 10, 14, 4, 'Jordan/ Irbid', 'active'),
+(26, 'Airpods', 'Airpods for I phones that makes working while listening to anything a lot easier with an affordable price', 'q01qb617537c.jpg', 70, 14, 5, 'Amman/Jordan', 'active'),
+(27, 'Headphones', 'headphones that is well structured with an elegant style', 'npatel_201209_4332_0019sq.0.jpg', 40, 11, 5, 'Jordan/ Irbid', 'active'),
+(28, 'Harry Potter book', 'Harry Potter and the deathly hallows book, an interesting adventurous book  with a lot of plot twists that you can read and enjoy at anytime', 'product-jpeg-500x500.jpeg', 20, 11, 4, 'Syria', 'active'),
+(29, 'School bag', 'A school bag for you children, since school is coming', 'designer-kids-school-bags-500x500.jpg', 5, 11, 6, 'Jordan/ Irbid', 'active'),
+(30, 'School bag', 'A school bag for a kid who likes dinosaurs ', 'T72_6021J_F4_IS.webp', 8, 10, 6, 'Jordan/ Irbid', 'active'),
+(31, 'Dining Table', 'A great shape dining table that is made of oak', 'images.jpg', 100, 10, 7, 'Amman', 'active'),
+(32, 'Sofas', 'elegant sofas that are suitable for your living room, great colors, handmade, made of oak', 'images (2).jpg', 300, 10, 7, 'Egypt', 'active'),
+(33, 'Dining Table', 'A great looking dining table that is made of oak for your kitchen', 'Dining.jpg', 60, 10, 7, 'Syria', 'active'),
+(34, 'Pencils And Notebooks', 'A collection of school supplies for kids, includes pencils, pens, notebooks, scissors, and much more', '717RUcLEWNL._AC_SL1490_.jpg', 7, 10, 6, 'Egypt', 'active'),
+(35, 'Shirt', 'Business casual shirt for men', 'download.jpg', 20, 3, 3, 'Jordan/ Zarqa', 'active'),
+(36, 'Home Plant', 'Home plant that does not need a lot of sunlight, water it every two days', 'about-01.jpg', 5, 3, 7, 'Amman/Tabarbour', 'active'),
+(37, 'School stuff', 'School needs that includes a face mask and hygiene to keep your kid healthy ', 'bigstock-school-supplies-and-covid-p-377292595.jpg', 6, 3, 6, 'Syria', 'active'),
+(38, 'Jacket', 'A black jacket for men that is suitable for autumn and winter with an affordable price', 'images (3).jpg', 25, 3, 3, 'Amman/Tabarbour', 'active'),
+(39, 'Jacket', 'Paige Jacket that can be formal or informal', '_108083555.jpg', 30, 3, 3, 'Jordan/ Irbid', 'active'),
+(40, 'Table', 'A beautiful handmade table', 'rr.jpeg', 50, 2, 7, 'Jordan/ Irbid', 'active'),
+(41, 'Home Desk', 'A beautiful desk with a great price for your home office', 'gg.jpg', 70, 2, 7, 'Jordan/ Zarqa', 'active'),
+(42, 'Home Desk', 'Working at home has never been easier with this beautiful home desk', '91KljnUp44L._SY355_.jpg', 65, 2, 7, 'Amman/Tabarbour', 'active'),
+(43, 'Laptop', 'It’s the cheapest of the bunch, and the option to choose an Intel HD Graphics 520 (For Touch) may just be what a student needs for his visual-editing works. Upgrade options include an 6th Gen Intel Core i5-6200U Dual Core processor  and  excellent graphics.  The HP Laptop 15.6″ sports a sleek black etched-aluminum finish that makes working on it fun. The build is solid and sturdy, so backpacking this laptop won’t be a problem.  This 15.6″ screened notebook weighs at about 4.73 lbs and comes complete with a full-sized keyboard for prolonged comfortable typing.', 'HP-Pavilion-x360-13z-Touch-Laptop.png', 310, 14, 5, 'Jordan/ Zarqa', 'active'),
+(44, 'Laptop', 'Screen Size	14 Inches Display Type	LED Weight	1.5 - 3.0 Kg Color	Silver Resolution	1920 x 1080 Pixels', 'laptop.jpg', 1000, 14, 5, 'Amman/Jordan', 'active'),
+(45, 'HDMI Cord', 'HDMI Cord multiple using cord', 'Cable-HDMI-HDMI-6ft.jpg', 6, 14, 5, 'Syria', 'active'),
+(46, 'Charger for Apple Watch + iPhone', 'Charge and display your Apple Watch and iPhone simultaneously with the 2-in-1 PowerHouse Charge Dock for Apple Watch + iPhone. With a Magnetic Charging Module for the Apple Watch built into the dock, your Apple Watch aligns magnetically and begins charging instantly. The dock also features a built-in VersaCase™ Lightning connector to charge your iPhone, that can be adjusted to fit almost any case. Engineered to charge both devices at the fastest possible speed, the dock also elevates them for safety and visibility while they charge.  Made for: iPhone X, iPhone 8 Plus, iPhone 8, iPhone 7, iPhone 7 Plus, iPhone SE, iPhone 6s Plus, iPhone 6s, iPhone 6 Plus, iPhone 6, Apple Watch Series 2 & 3 Please note: This product is not compatible with the new iPhone XS, iPhone XS Max and iPhone XR', 'webdam.web.1000.1000.jpeg', 50, 14, 5, 'Jordan/ Zarqa', 'active');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vendor`
+--
+
+CREATE TABLE `vendor` (
+  `v_id` int(3) NOT NULL,
+  `v_name` varchar(50) NOT NULL,
+  `v_email` varchar(50) NOT NULL,
+  `v_password` varchar(50) NOT NULL,
+  `v_img` varchar(50) NOT NULL,
+  `v_num` varchar(20) NOT NULL,
+  `v_country` varchar(50) NOT NULL,
+  `v_status` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `vendor`
+--
+
+INSERT INTO `vendor` (`v_id`, `v_name`, `v_email`, `v_password`, `v_img`, `v_num`, `v_country`, `v_status`) VALUES
+(2, 'Israa Elaiwa', 'i@gmail.com', '698d51a19d8a121ce581499d7b701668', 'blog-03.jpg', '07899666', 'Jordan', 'active'),
+(3, 'sora', 's@gmail.com', '698d51a19d8a121ce581499d7b701668', 'about-02.jpg', '0789999111', 'Jordan', 'active'),
+(10, 'Rahaf Elaiwa', 'r@gmail.com', '698d51a19d8a121ce581499d7b701668', '1205049485.jpg.0.jpg', '0789999111', 'Palastine', 'active'),
+(11, 'Ahmad', 'w@yahoo.com', '698d51a19d8a121ce581499d7b701668', 'slide-06.jpg', '077123456', 'Jordan', 'active'),
+(12, 'Rahaf', 'r@yahoo.com', '698d51a19d8a121ce581499d7b701668', 'about-02.jpg', '078123456', 'Egypt', 'active'),
+(14, 'Saja ', 'saja@yahoo.com', '698d51a19d8a121ce581499d7b701668', 'product-02.jpg', '079123456', 'Egypt', 'active'),
+(17, 'Malak', 'm@yahoo.com', '698d51a19d8a121ce581499d7b701668', 'blog-03.jpg', '0789999', 'Russia', 'active'),
+(18, 'Heba Elaiwa', 'h@gmail.com', '698d51a19d8a121ce581499d7b701668', 'hritik.jpg', '07899666', 'Palastine', 'active');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`admin_id`);
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`cat_id`);
+
+--
+-- Indexes for table `contact`
+--
+ALTER TABLE `contact`
+  ADD PRIMARY KEY (`contact_id`);
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`cust_id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`);
+
+--
+-- Indexes for table `order_detail`
+--
+ALTER TABLE `order_detail`
+  ADD PRIMARY KEY (`order_detail_id`),
+  ADD KEY `order_id` (`order_id`);
+
+--
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`pro_id`),
+  ADD KEY `cat_id` (`cat_id`),
+  ADD KEY `v_id` (`v_id`);
+
+--
+-- Indexes for table `vendor`
+--
+ALTER TABLE `vendor`
+  ADD PRIMARY KEY (`v_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `admin_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `cat_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `contact`
+--
+ALTER TABLE `contact`
+  MODIFY `contact_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `customer`
+--
+ALTER TABLE `customer`
+  MODIFY `cust_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=174;
+
+--
+-- AUTO_INCREMENT for table `order_detail`
+--
+ALTER TABLE `order_detail`
+  MODIFY `order_detail_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=473;
+
+--
+-- AUTO_INCREMENT for table `product`
+--
+ALTER TABLE `product`
+  MODIFY `pro_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+
+--
+-- AUTO_INCREMENT for table `vendor`
+--
+ALTER TABLE `vendor`
+  MODIFY `v_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `order_detail`
+--
+ALTER TABLE `order_detail`
+  ADD CONSTRAINT `order_detail_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `product`
+--
+ALTER TABLE `product`
+  ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`cat_id`) REFERENCES `category` (`cat_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_ibfk_2` FOREIGN KEY (`v_id`) REFERENCES `vendor` (`v_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
