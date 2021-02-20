@@ -15,6 +15,8 @@ if(isset($_POST['submit']))
 {
 	$_SESSION['cart'][$pro_id] =$_POST['qty'];
   $add = "<p class='availability in-stock pull-right'><span>This Item Added To Your Cart</span></p>";
+  echo"<script type='text/javascript'>window.location='grid.php?id={$catID}'</script>";
+
 }
 
 ?>﻿
@@ -90,7 +92,7 @@ if(isset($_POST['submit']))
                       </button>
                     </div>
                     <div class="email-addto-box">
-                    
+
                       <?php if (isset($add)) {
                         echo $add;
                       }?>
