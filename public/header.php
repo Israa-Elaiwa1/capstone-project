@@ -60,10 +60,8 @@ $msg ='Welcome Back '.$_SESSION['cust_name'].'!';
         <div class="row">
           <!-- Header Language -->
           <div class="col-xs-7 col-sm-6">
-            <div class="dropdown block-language-wrapper hidden-xs"> <a role="button" data-toggle="dropdown" data-target="#" class="block-language dropdown-toggle" href="#"> <img src="images/english.png" alt="language"> English <span class="caret"></span> </a>
-              <ul class="dropdown-menu" role="menu">
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><img src="images/english.png" alt="language"> English </a></li>
-              </ul>
+            <div class="dropdown block-language-wrapper hidden-xs"> <a role="button" class="block-language dropdown-toggle" href="#"> <img src="images/english.png" alt="language"> English  </a>
+
             </div>
             <!-- End Header Language -->
 
@@ -107,9 +105,8 @@ $msg ='Welcome Back '.$_SESSION['cust_name'].'!';
 
                 </ul>
                 <div class="actions">
-              <?php echo"<a href ='checkout.php?total={$grandTotal}'><button class='btn-checkout' title='Checkout' type='button'><span>Checkout</span></button></a>";?>
-                  <a href="shoppingCart.php" class="view-cart" ><span>View Cart</span></a> </div>
-                <!--actions-->
+                  <?php echo"<a href ='checkout.php?total={$grandTotal}'><button class='btn-checkout' title='Checkout' type='button'><span>Checkout</span></button></a>";?>
+                                   <a href="shoppingCart.php" class="view-cart" ><span>View Cart</span></a> </div>                <!--actions-->
               </div>
             </div>
           </div>
